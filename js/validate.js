@@ -16,6 +16,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
  * 4. optional top domain .dot between 2-8 charaters 
  */
 
+
+let emailForm = document.getElementById('email-form'),
+    msg = document.querySelector('.success');
+
 function validateEmail(field) {
     const regex = /^([a-zA-Z0-9\.-]{1,64})+@([a-z]{1,254})+\.([a-z]{2,8})(\.[a-z]{2,8})?$/;
     if (field == "") {
@@ -27,28 +31,34 @@ function validateEmail(field) {
     }
 }
 
-let text = document.getElementById('email'),
-    error = document.getElementById('email-error');
+function isValid(field) {
+    if (field === "") return false;
 
-function checkValidity(evt) {
-    evt.preventDefault();
-    if (validateEmail(text.value)) {
-        text.classList.remove('invalid');
-        text.classList.add('valid');
-        text.setAttribute("aria-invalid", false);
-        text.setAttribute("aria-describedby", false);
-        error.textContent = "";
-        error.removeAttribute("role");
+    if (validateEmail(field.value)) {
+        field.classList.add('valid');
+        field.classList.remove('invalid');
+        return true;
     } else {
-        text.focus();
-        text.setAttribute("aria-describedby", "email-error");
-        text.setAttribute("aria-invalid", true);
-        text.classList.remove('valid');
-        text.classList.add('invalid');
-        error.textContent = "Please provide a valid email address";
-        error.setAttribute("role", "alert");
+        field.classList.add('invalid');
+        field.classList.remove('valid');
+        return false;
     }
 }
 
-document.getElementById('email-form').addEventListener('submit', checkValidity);
-text.addEventListener('blur', checkValidity);
+emailForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    let email = e.target.elements.email;
+    if (isValid(email)) {
+        msg.setAttribute("role", "alert");
+        msg.textContent = "Successful! You're subscribe now!";
+        msg.style.opacity = 1;
+        setTimeout(function () {
+            msg.removeAttribute("role");
+            msg.textContent = "";
+            msg.style.opacity = 0;
+        }, 5000);
+        email.value = "";
+    } else {
+        email.focus();
+    }
+});

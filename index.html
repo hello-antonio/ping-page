@@ -26,7 +26,7 @@
 
 <body>
   <div class="wrapper">
-    <header class="header">
+    <header class="header" role="banner">
       <h1 aria-label="Ping">
         <svg class="logo">
           <use xlink:href="#logo"></use>
@@ -37,22 +37,26 @@
       </h2>
     </header>
     <main>
-      <form method="post" id="email-form">
-        <p id="form-title">
-          Subscribe and get notified
-        </p>
-        <label for="email" aria-labelledby="form-title">
-          <input type="text" name="email" id="email" aria-placeholder="enter email address"
-            placeholder="Your email address..." maxlength="320" aria-required="true" required>
-          <p class="error" id="email-error"></p>
-        </label>
-        <label for="send" aria-label="send">
-          <input type="submit" value="Notify Me" id="send">
-        </label>
+      <form id="email-form">
+        <fieldset>
+          <legend tabindex="0">
+            Subscribe and get notified
+          </legend>
+          <div class="flex-wrapper">
+            <label for="email">
+              <input type="text" name="email" id="email" placeholder="Your email address..." maxlength="320" aria-invalid="true" aria-required="true" required>
+                <p class="error" id="help" role="alert">Please provide a valid email address</p>
+            </label>
+            <label for="send">
+              <input type="submit" value="Notify Me" id="send">
+            </label>
+          </div>
+        </fieldset>
       </form>
+      <div class="success" aria-relevant="all">text</div>
       <img src="./images/illustration-dashboard.png" alt="illustration dashboard" class="dashboard">
     </main>
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
       <ul class="social">
         <li>
           <a href="" aria-label="facebook">
