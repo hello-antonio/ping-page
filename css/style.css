@@ -104,7 +104,8 @@ label {
 input {
     width: auto;
     padding: 1rem 1.5rem;
-    margin: 0 0 1rem;
+    min-height: 50px;
+    max-height: 54px;    
     outline: transparent;
     border: transparent;
     font-size: 0.675em;
@@ -130,11 +131,16 @@ input {
 }
 #email-form legend {
     width: 100%;
-    margin: 0 auto 1rem;
+    margin: 0 auto 1.5rem;
+    font-size: 0.75em;
 }
 #email {
     width: 100%;
     border: 1px solid hsl(223, 87%, 63%);
+}
+
+#email:focus {
+    box-shadow: 0 0 10px rgba(79, 147, 241, 0.5);
 }
 
 #email::-webkit-input-placeholder {
@@ -155,10 +161,11 @@ input {
 
 #email.invalid {
     border-color: hsl(354, 100%, 66%);
+    box-shadow: 0 0 10px rgba(255, 81, 98, 0.5);
 }
 
 .error {
-    padding: 0 1rem;
+    padding: .5rem 1rem;
     margin: auto;
     text-align: center;
     font-style: italic;
@@ -182,6 +189,7 @@ input {
     padding: 1rem;
     text-align: center;
     transition: opacity 0.3s;
+    font-weight: 700;
     z-index: 1000;
     background: #4f93f1;
     color: white;
@@ -235,8 +243,8 @@ input {
 
 /* ICONS */
 .icon {
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
     fill: hsl(223, 87%, 63%);
     border: thin solid hsl(223, 87%, 63%);
     border-radius: 100%;
@@ -264,6 +272,10 @@ input {
 
     label {
         width: auto;
+    }
+    
+    #email-form legend {
+        font-size: 1.15em;
     }
 
     #email-form input {

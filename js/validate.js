@@ -18,7 +18,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 
 let emailForm = document.getElementById('email-form'),
-    msg = document.querySelector('.success');
+    msg = document.querySelector('.success'),
+    timer;
 
 function validateEmail(field) {
     const regex = /^([a-zA-Z0-9\.-]{1,64})+@([a-z]{1,254})+\.([a-z]{2,8})(\.[a-z]{2,8})?$/;
@@ -52,7 +53,7 @@ emailForm.addEventListener("submit", function (e) {
         msg.setAttribute("role", "alert");
         msg.textContent = "Successful! You're subscribe now!";
         msg.style.opacity = 1;
-        setTimeout(function () {
+        timer = setTimeout(function () {
             msg.removeAttribute("role");
             msg.textContent = "";
             msg.style.opacity = 0;
@@ -62,3 +63,5 @@ emailForm.addEventListener("submit", function (e) {
         email.focus();
     }
 });
+
+clearTimeout(timer);
